@@ -1,0 +1,26 @@
+{
+  "name": "deckagog",
+  "version": "0.0.0",
+  "description": "A simple way to install Gog games (Windows and Linux) on steamdeck.",
+  "main": "index.js",
+  "scripts": {
+    "start:frontend": "vite",
+    "start:web": "DECKAGOG_MODE=dev jurigged main.py",
+    "start": "run-p start:frontend start:web",
+    "build": "npm run build:frontend && npm run build:web",
+    "build:frontend": "vite build",
+    "build:web": "pyinstaller -F --distpath out -n deckagog --add-data dist:dist main.py"
+  },
+  "keywords": [],
+  "author": "David Konsumer <konsumer@jetboystudio.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@vitejs/plugin-react": "^2.2.0",
+    "npm-run-all": "^4.1.5",
+    "vite": "^3.2.2"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
