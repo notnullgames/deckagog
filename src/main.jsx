@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom/client'
-import Navigation, { VerticalList, HorizontalList, Grid, Focusable } from 'react-key-navigation'
 import cx from 'classnames'
 
 import './index.css'
