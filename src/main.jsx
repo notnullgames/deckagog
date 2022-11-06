@@ -11,11 +11,16 @@ function App () {
   const [currentSelected, setCurrentSelected] = useState(0)
   const [currentDetails, setCurrentDetails] = useState(false)
 
+  // TODO: make sure keys match default steam keys and/or add joystuck support
   const keyDownHandler = e => {
     e.preventDefault()
 
     if (e.key === 'Enter') {
       setCurrentDetails(currentSelected)
+    }
+
+    if (e.key === 'Backspace' && currentDetails !== false) {
+      setCurrentDetails(false)
     }
 
     if (e.key === 'ArrowRight') {
@@ -62,22 +67,23 @@ function App () {
     }
   }
 
-  useEffect(() => {
-    document.querySelector('.poster.current')?.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' }, 500)
-  }, [currentSelected])
-
+  // manage scrolling (top on regular page, to current-poster on list)
   useEffect(() => {
     if (currentDetails === false) {
       document.querySelector('.poster.current')?.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' }, 500)
     } else {
-      document.body.scrollIntoView({
-        behavior: 'smooth'
-      }, 500)
+      document.body.scrollIntoView({ behavior: 'smooth' }, 500)
     }
-  }, [currentDetails])
+  }, [currentDetails, currentSelected])
 
+  // attach key-handlers
   useEffect(() => {
     window.addEventListener('keydown', keyDownHandler)
+    return () => window.removeEventListener('keydown', keyDownHandler)
+  }, [games.length, currentDetails])
+
+  // get data
+  useEffect(() => {
     pywebview.api.get_games()
       .then(g => {
         setCount(g.length)
@@ -89,9 +95,7 @@ function App () {
       })
       // TODO: rev-sort by purchase-date
       // TODO: filter non-games and DLC
-
-    return () => window.removeEventListener('keydown', keyDownHandler)
-  }, [games.length])
+  }, [])
 
   return (
     <div>
@@ -101,13 +105,13 @@ function App () {
             <div className='wait'>Please wait while I get info about your {count} games.</div>
           )}
           {games.map((game, i) => game?._links?.boxArtImage?.href && (
-            <img className={cx('poster', { current: i === currentSelected })} onClick={() => setCurrentDetails(i)} key={i} width='140' src={game?._links?.boxArtImage?.href} title={game?._embedded?.product?.title} alt={game?._embedded?.product?.title} />
+            <img className={cx('poster', { current: i === currentSelected })} onClick={() => { setCurrentSelected(i); setCurrentDetails(i) }} key={i} width='140' src={game?._links?.boxArtImage?.href} title={game?._embedded?.product?.title} alt={game?._embedded?.product?.title} />
           ))}
         </div>
       )}
       {currentDetails !== false && (
         <div className='infoPage'>
-          <a href='#' className='back' onClick={() => setCurrentDetails(false)}>BACK</a>
+          {/* <a href='#' className='back' onClick={() => setCurrentDetails(false)}>BACK</a> */}
           <pre>{JSON.stringify(games[currentDetails], null, 2)}</pre>
         </div>
       )}
