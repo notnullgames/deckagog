@@ -7,3 +7,27 @@ body {
     height:  100vh;
     width:  100vw;
 }
+
+.wait {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.poster {
+    margin-bottom: 20px;
+    border: 2px solid black;
+}
+
+.poster.current {
+    border-color:  red;
+}
+
+.posterGrid {
+    display: grid;
+    margin-top: 10px;
+    margin-left: 10px;
+    grid-template-columns: repeat(8, 1fr);
+}

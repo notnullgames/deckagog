@@ -4,8 +4,8 @@
   "description": "A simple way to install Gog games (Windows and Linux) on steamdeck.",
   "main": "index.js",
   "scripts": {
-    "start:frontend": "vite",
-    "start:web": "DECKAGOG_MODE=dev jurigged main.py",
+    "start:frontend": "vite --clearScreen false",
+    "start:web": "DECKAGOG_MODE=dev python3 main.py",
     "start": "run-p start:frontend start:web",
     "build": "npm run build:frontend && npm run build:web",
     "build:frontend": "vite build",
@@ -20,7 +20,9 @@
     "vite": "^3.2.2"
   },
   "dependencies": {
+    "classnames": "^2.3.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-key-navigation": "^0.0.13"
   }
 }

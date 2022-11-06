@@ -1,6 +1,8 @@
-# deckagog
+<img src="logo.png" alt="deckagog" width="200" />
 
 A simple way to install Gog games (Windows and Linux) on steamdeck.
+
+> I am in no way affiliated with Steam or Gog. This is just a tool I wanted, and I thought it could be useful to others.
 
 ## Installation
 
