@@ -16,6 +16,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Set env
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+
       - name: Node.js setup
         uses: actions/setup-node@v1
         with:
@@ -40,8 +43,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tagName: v__VERSION__ # tauri-action replaces \_\_VERSION\_\_ with the app version
-          releaseName: 'v__VERSION__'
-          releaseBody: 'See the assets to download this version and install.'
+          tagName: ${{ env.RELEASE_VERSION }}
+          releaseName: ${{ env.RELEASE_VERSION }}
+          releaseBody: 'This is an automated release. Use them to run deckagog on your platform.'
           releaseDraft: true
           prerelease: false
