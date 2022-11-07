@@ -1,15 +1,17 @@
 import { readTextFile, writeTextFile, BaseDirectory } from '@tauri-apps/api/fs'
 import { getClient } from '@tauri-apps/api/http'
 
-const client = await getClient()
+let client
 
 // load auth from ~/.deckagog.json
 let auth
-try {
-  auth = JSON.parse(await readTextFile('.deckagog.json', { dir: BaseDirectory.Home }))
-} catch {
-  window.alert('You must setup auth. Please refer to the README.')
-}
+readTextFile('.deckagog.json', { dir: BaseDirectory.Home })
+  .then(j => {
+    auth = JSON.parse(j)
+  })
+  .catch(e => {
+    window.alert('You must setup auth. Please refer to the README.')
+  })
 
 // get the current token (cache or by refresh from rust, due to CORS)
 export async function token () {
@@ -25,6 +27,7 @@ export async function token () {
       grant_type: 'refresh_token',
       refresh_token: auth.refresh_token
     })
+    client = client || await getClient()
     auth = await client.get(`https://auth.gog.com/token?${s.toString()}`).then(r => r.data)
     auth.expires = (auth.expires_in * 1000) + Date.now()
     await writeTextFile('.deckagog.json', JSON.stringify(auth), { dir: BaseDirectory.Home })
@@ -36,6 +39,7 @@ export async function token () {
 // get user's game-IDs (from rust, due to CORS)
 export async function games () {
   const t = await token()
+  client = client || await getClient()
   return client.get('https://embed.gog.com/user/data/games', { headers: { Authorization: `Bearer ${t}` } })
     .then(r => r.data)
     .then(g => g.owned)
