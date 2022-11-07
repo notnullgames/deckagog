@@ -48,3 +48,14 @@ jobs:
           releaseBody: 'This is an automated release. Use them to run deckagog on your platform.'
           releaseDraft: true
           prerelease: false
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: true
+          title: "Automatedd Release"
+          files: |
+            src-tauri/target/release/bundle/macos/deckagog.app.tar.gz
+            src-tauri/target/release/bundle/deb/deckagog_0.0.0_amd64.deb
+            src-tauri/target/release/bundle/appimage/deckagog_0.0.0_amd64.AppImage
+            src-tauri/target/release/bundle/msi/deckagog_0.0.0_x64_en-US.msi
