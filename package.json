@@ -1,27 +1,26 @@
 {
   "name": "deckagog",
-  "version": "0.0.4",
-  "description": "A simple way to install Gog games (Windows and Linux) on steamdeck.",
-  "main": "index.js",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "start:frontend": "vite --clearScreen false",
-    "start:web": "DECKAGOG_MODE=dev python3 main.py",
-    "start": "run-p start:frontend start:web",
-    "build": "npm run build:frontend && npm run build:web",
-    "build:frontend": "vite build",
-    "build:web": "pyinstaller -F --distpath out -n deckagog --add-data dist:dist main.py"
-  },
-  "keywords": [],
-  "author": "David Konsumer <konsumer@jetboystudio.com>",
-  "license": "MIT",
-  "devDependencies": {
-    "@vitejs/plugin-react": "^2.2.0",
-    "npm-run-all": "^4.1.5",
-    "vite": "^3.2.2"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "tauri": "tauri",
+    "start": "npm run tauri dev"
   },
   "dependencies": {
+    "@tauri-apps/api": "^1.1.0",
     "classnames": "^2.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^1.1.0",
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "@vitejs/plugin-react": "^2.0.0",
+    "vite": "^3.0.2"
   }
 }
