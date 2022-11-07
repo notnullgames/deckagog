@@ -14,7 +14,7 @@ Download [the release](TODO) and put it in a sensible directory. Add it as a non
 For now, you will need to make an initial login token externally. I made a little script you can run in desktop-mode:
 
 ```sh
-curl -L https://raw.githubusercontent.com/notnullgames/deckagog/login.sh | bash
+curl -L https://raw.githubusercontent.com/notnullgames/deckagog/main/login.sh | bash
 ```
 
 You should only need to do this once.
