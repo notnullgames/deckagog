@@ -88,7 +88,7 @@ function App () {
         setCount(g.length)
         return Promise.all(g.map(id => gog.details(id)))
       }).then(r => {
-        const n = r.filter(g => !g?.message)
+        const n = r.filter(g => !g?.message && g?._embedded.productType === 'GAME')
         setCount(n.length)
         setGames(n)
       })
@@ -111,6 +111,9 @@ function App () {
       {currentDetails !== false && (
         <div className='infoPage'>
           {/* <a href='#' className='back' onClick={() => setCurrentDetails(false)}>BACK</a> */}
+          <h1 className='detail_title' style={{ backgroundImage: `url(${games[currentDetails]?._links?.galaxyBackgroundImage?.href})` }}>{games[currentDetails]?._embedded?.product?.title}</h1>
+          <button>Install</button>
+          <div className='description' dangerouslySetInnerHTML={{ __html: games[currentDetails].overview }} />
           <pre>{JSON.stringify(games[currentDetails], null, 2)}</pre>
         </div>
       )}

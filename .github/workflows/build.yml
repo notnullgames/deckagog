@@ -55,7 +55,6 @@ jobs:
           prerelease: true
           title: "Automatedd Release"
           files: |
-            src-tauri/target/release/bundle/macos/deckagog.app.tar.gz
             src-tauri/target/release/bundle/deb/deckagog_0.0.0_amd64.deb
             src-tauri/target/release/bundle/appimage/deckagog_0.0.0_amd64.AppImage
             src-tauri/target/release/bundle/msi/deckagog_0.0.0_x64_en-US.msi
