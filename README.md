@@ -25,3 +25,4 @@ I got some ideas from:
 
 - [heroic-gogl](https://github.com/Heroic-Games-Launcher/heroic-gogdl)
 - [HeroicBashLauncher](https://github.com/redromnon/HeroicBashLauncher)
+- [GameLauncherResearch](https://github.com/Lariaa/GameLauncherResearch/wiki)
