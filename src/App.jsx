@@ -85,7 +85,8 @@ function App () {
   useEffect(() => {
     gog.games()
       .then(g => {
-        setCount(g.length)
+        console.log('GAMES', g)
+        setCount(g?.length || 0)
         return Promise.all(g.map(id => gog.details(id)))
       }).then(r => {
         const n = r.filter(g => !g?.message && g?._embedded.productType === 'GAME')
