@@ -3,9 +3,34 @@
 # this script will create login credentials for you
 # run with curl -L https://raw.githubusercontent.com/notnullgames/deckagog/login.sh | bash
 
-curl -L https://github.com/notnullgames/goglogin/releases/download/0.0.0/linux-x86-64.zip > /tmp/linux-x86-64.zip
+unamestr=$(uname)
+if [ "$unamestr" == 'Linux' ]; then
+  platform='linux'
+elif [ "$unamestr" == 'Darwin' ]; then
+  platform='mac'
+else
+  echo "Unknown platform."
+  exit 1
+fi
+
+unamestr=$(uname -m)
+if [ "${unamestr}" == "aarch64" ];then
+  arch='arm64'
+elif [ "$unamestr" == 'arm64' ]; then
+  arch='arm64'
+elif [ "$arch" == 'armv*' ]; then
+  arch='arm64'
+elif [ "$unamestr" == 'x86_64' ]; then
+  arch='x86-64'
+else
+  echo "Unknown arch."
+  exit 1
+fi
+
+curl -L "https://github.com/notnullgames/goglogin/releases/download/0.0.0/${platform}-${arch}.zip" > /tmp/goglogin.zip
+
 cd /tmp
-unzip linux-x86-64.zip
+unzip goglogin.zip
 CODE=$(./goglogin)
 rm goglogin
 
