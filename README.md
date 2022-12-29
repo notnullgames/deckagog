@@ -9,7 +9,7 @@ A simple way to install Gog games (Windows and Linux) on steamdeck.
 
 ## Installation
 
-Download [the release](TODO) and put it in a sensible directory. Add it as a non-steam game in steam.
+Download [the latest release](https://github.com/notnullgames/deckagog/releases) and put it in a sensible directory. Add it as a non-steam game in steam.
 
 For now, you will need to make an initial login token externally. I made a little script you can run in desktop-mode:
 
@@ -18,6 +18,18 @@ curl -L https://raw.githubusercontent.com/notnullgames/deckagog/main/login.sh | 
 ```
 
 You should only need to do this once.
+
+## TODO
+
+This is not done at all. I need to do a few things:
+
+- Use [player-id](https://playerdb.co/) to link up better data
+- actually install windows games in proton
+- make non-steam-game entries
+- incorporate humblebundle (and maybe chnage the name)
+- figure out humblebundle collection (for subscribers)
+
+
 
 ## thanks
 
