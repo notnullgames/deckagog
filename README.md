@@ -25,9 +25,12 @@ This is not done at all. I need to do a few things:
 
 - Use [player-id](https://playerdb.co/) to link up better data
 - actually install windows games in proton
-- make non-steam-game entries
+- make non-steam-game entries directly
 - incorporate humblebundle (and maybe chnage the name)
 - figure out humblebundle collection (for subscribers)
+- look at [tauri-oauth-supabase](https://github.com/JeaneC/tauri-oauth-supabase) for example of 
+spawning window and watching URL chnage (for gog auth and others)
+- key-nav, very light graphics & basic layout example [here](https://github.com/dead/react-key-navigation/tree/master/examples/youtube-react-tv)
 
 
 
