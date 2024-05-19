@@ -30,7 +30,7 @@ This is not done at all. I need to do a few things:
 - look at [tauri-oauth-supabase](https://github.com/JeaneC/tauri-oauth-supabase) for example of 
 spawning window and watching URL chnage (for gog auth and others)
 - key-nav, very light graphics & basic layout example [here](https://github.com/dead/react-key-navigation/tree/master/examples/youtube-react-tv)
-- use bunjs, since it can totally work fiune with tauri app, and build as [executable](https://bun.sh/docs/bundler/executables) for easier install
+- use bunjs, since it can totally work fine with tauri (`bunx create-tauri-app`) and build as [executable](https://bun.sh/docs/bundler/executables) for easier install
 
 
 
